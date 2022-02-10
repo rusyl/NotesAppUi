@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -23,18 +26,32 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
-    private View view;
+    private View view,decorView;
 
     private TextView textView;
     private ImageView imageView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if(visibility==0){
+                    decorView.setVisibility(hideSystemBars());
+                }
+            }
+        });
+
+
         tabLayout = findViewById(R.id.tabLayout);
         view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.tab_background, null);
+
         textView = view.findViewById(R.id.tv1);
         imageView = view.findViewById(R.id.iv1);
 
@@ -104,6 +121,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+
+    private int hideSystemBars(){
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 
     private void setCustomView(int selectedtab, int non1, int non2, int non3) {

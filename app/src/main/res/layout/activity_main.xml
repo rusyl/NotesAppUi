@@ -4,17 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#00000000"
         app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
+            android:background="#00000000"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:layout_scrollFlags="scroll|enterAlways">
@@ -81,7 +83,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="#00000000"
         android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -105,7 +107,7 @@
     <!--Tablayout-->
     <!--app:tabMode="scrollable"-->
     <com.google.android.material.tabs.TabLayout
-            android:background="@color/colorPrimary"
+            android:background="#1ACCF2"
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="72dp"
@@ -114,7 +116,7 @@
 
             app:tabGravity="center"
 
-            app:tabIconTint="@android:color/darker_gray"
+            app:tabIconTint="@android:color/holo_blue_dark"
             app:tabIndicator="@null"
             app:tabMinWidth="40dp"
            app:tabMode="scrollable"
